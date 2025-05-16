@@ -311,6 +311,8 @@ async def create_chat_completion(request: ChatCompletionRequest, api_key: str = 
 			reply_text = response.text
 		else:
 			reply_text = str(response)
+		reply_text = reply_text.replace("&lt;","<").replace("\\<","<").replace("\\_","_").replace("\\>",">")
+		reply_text = reply_text.replace("https://www.google.com/search?q=https://www.google.com/search?q=", "https://www.google.com/search?q=")
 
 		logger.info(f"Response: {reply_text}")
 
